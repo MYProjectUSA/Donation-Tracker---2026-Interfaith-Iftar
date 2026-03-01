@@ -75,11 +75,25 @@
       gap: 14px;
     }
     .qrItem {
+      display: block;
       background: #fff;
       border: 1px solid #e6e6e6;
       border-radius: 14px;
       padding: 10px;
       text-align: center;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+    .qrItem:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.09);
+      transform: translateY(-1px);
+    }
+    .qrItem:focus-visible {
+      outline: 3px solid rgba(46,125,50,0.35);
+      outline-offset: 2px;
     }
     .qrItem img {
       width: 100%;
@@ -93,6 +107,18 @@
       font-size: 14px;
       font-weight: 600;
       color: #111;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+      transition: color 180ms ease;
+    }
+    .qrItem:hover .qrLabel,
+    .qrItem:focus-visible .qrLabel {
+      color: var(--accent);
+    }
+    .qrLabel::after {
+      content: " ↗";
+      font-size: 12px;
     }
     .card {
       background: var(--card-bg);
@@ -223,18 +249,18 @@
 
       <aside class="qrPanel" aria-label="QR Codes">
         <div class="qrList">
-          <div class="qrItem">
+          <a class="qrItem" href="https://www.zeffy.com/en-US/donation-form/build-lasting-sustainability-with-my-project-usa" target="_blank" rel="noopener noreferrer" aria-label="Donate Now">
             <img src="2026-Interfaith-Iftar-Donation-qr-code.png" alt="Donation QR Code">
             <div class="qrLabel">Donate Now</div>
-          </div>
-          <div class="qrItem">
+          </a>
+          <a class="qrItem" href="https://forms.gle/NwowGqexQ8NM44ZS8" target="_blank" rel="noopener noreferrer" aria-label="Pledge Donation">
             <img src="2026-Interfaith-Iftar-Donation-Pledge-qr-code.png" alt="Donation Pledge QR Code">
             <div class="qrLabel">Pledge Donation</div>
-          </div>
-          <div class="qrItem">
+          </a>
+          <a class="qrItem" href="https://forms.gle/w6bzy35363byZWCZ6" target="_blank" rel="noopener noreferrer" aria-label="Pledge Volunteer Hours">
             <img src="2026-Interfaith-Iftar-Volunteer-Pledge-qr-code.png" alt="Volunteer Pledge QR Code">
             <div class="qrLabel">Pledge Volunteer Hours</div>
-          </div>
+          </a>
         </div>
       </aside>
     </div>
