@@ -50,7 +50,7 @@
     .grid {
       margin-top: 22px;
       display: grid;
-      grid-template-columns: repeat(2, minmax(260px, 420px));
+      grid-template-columns: repeat(3, minmax(260px, 420px));
       justify-content: center;
       gap: 16px;
     }
@@ -311,7 +311,8 @@
 
     // 2) Set your goals here (manual)
     const GOALS = {
-      yearDonations: 500000,
+      monthDonations: 500000,
+      yearDonations: 750000,
       volunteerHours: 50000,
     };
 
@@ -392,6 +393,7 @@
 
       // Pull your exact keys from the API response
       const yearTotal = Number(row["2026 Donations Total"] || 0);
+      const total2026 = Number(row["All year Donations Total"] || 0);
       const volunteerHours = Number(row["2026 Volunteer hours pledged"] || 0);
       const volunteerDollarAmount = Number(row["2026 hours pledged $ Amount"] || 0);
 
@@ -400,13 +402,21 @@
 
       // Card 1: Monthly donations
       {
-        const pct = GOALS.yearDonations > 0 ? clamp01(yearTotal / GOALS.yearDonations) : 0;
+        const pct = GOALS.monthDonations > 0 ? clamp01(yearTotal / GOALS.monthDonations) : 0;
         grid.insertAdjacentHTML("beforeend",
-          cardHTML("Donated This Month", money(yearTotal), money(GOALS.yearDonations), pct)
+          cardHTML("Ramadan Goal", money(yearTotal), money(GOALS.monthDonations), pct)
         );
       }
 
-      // Card 2: Volunteer hours
+      // Card 2: 2026 goal
+      {
+        const pct = GOALS.yearDonations > 0 ? clamp01(total2026 / GOALS.yearDonations) : 0;
+        grid.insertAdjacentHTML("beforeend",
+          cardHTML("2026 Goal", money(total2026), money(GOALS.yearDonations), pct)
+        );
+      }
+
+      // Card 3: Volunteer hours
       {
         const pct = GOALS.volunteerHours > 0 ? clamp01(volunteerDollarAmount / GOALS.volunteerHours) : 0;
         grid.insertAdjacentHTML("beforeend",
